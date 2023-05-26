@@ -1,42 +1,57 @@
  == CustomerUser == 
 UUID
-String username
-String email
+String name
+String username  --> unique
+String email  --> unique
 ApplicationUser applicationUser  --> OneToOne
 CustomerProfile CustomerProfile  --> OneToOne
 Timestamp createdAt
 Timestamp updatedAt
 
+POST /register
+GET /customer-users/{customerUserId}
+
  == ApplicationUser == 
-Long id
-String username
-String email
+UUID id
+String name
+String username  --> unique
+String email  --> unique
 String password
 CustomerUser customerUser --> OneToOne
+
+POST /login
 
  == CustomerProfile == 
 Long id
 String name
-int nik
-... dateOfBirth
-Wallet wallet  --> OneToOne
+int nik  --> unique
+LocalDate dateOfBirth
+Wallet wallet  --> OneToOne  (tidak perlu)
 Timestamp createdAt
 Timestamp updatedAt
 
+PUT /customer-users/{customerUserId}/customer-profiles
+GET /customer-users/{customerUserId}/customer-profiles
+
  == Wallet == 
-Long id
-Long balance
+UUID id
+BigDecimal balance
 Transaction Transaction  --> OneToMany?
 Timestamp createdAt
 Timestamp updatedAt
+
+GET /customer-users/{customerUserId}/wallets
 
  == Transaction == 
 Long id
 TransactionType transactionType
 String description
-Wallet Wallet  --> ManyToOne
-Long amount
+Wallet Wallet(id)  --> ManyToOne 
+BigDecimal amount
 Timestamp createdAt
+
+GET /customer-users/{customerUserId}/transactions
+POST /customer-users/{customerUserId}/transfer
 
  == TransactionType == (enum)
 IN, OUT
