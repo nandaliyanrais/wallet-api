@@ -1,0 +1,42 @@
+ == CustomerUser == 
+UUID
+String username
+String email
+ApplicationUser applicationUser  --> OneToOne
+CustomerProfile CustomerProfile  --> OneToOne
+Timestamp createdAt
+Timestamp updatedAt
+
+ == ApplicationUser == 
+Long id
+String username
+String email
+String password
+CustomerUser customerUser --> OneToOne
+
+ == CustomerProfile == 
+Long id
+String name
+int nik
+... dateOfBirth
+Wallet wallet  --> OneToOne
+Timestamp createdAt
+Timestamp updatedAt
+
+ == Wallet == 
+Long id
+Long balance
+Transaction Transaction  --> OneToMany?
+Timestamp createdAt
+Timestamp updatedAt
+
+ == Transaction == 
+Long id
+TransactionType transactionType
+String description
+Wallet Wallet  --> ManyToOne
+Long amount
+Timestamp createdAt
+
+ == TransactionType == (enum)
+IN, OUT
