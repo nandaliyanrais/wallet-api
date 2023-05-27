@@ -7,6 +7,8 @@ import java.util.UUID;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.assignment.walletapi.customerprofile.models.dto.CustomerProfileResponse;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -40,5 +42,16 @@ public class CustomerProfile {
 
     @UpdateTimestamp
     private Timestamp updatedAt;
+
+    public CustomerProfileResponse convertToResponse() {
+        return CustomerProfileResponse.builder()
+                .id(this.id)
+                .name(this.name)
+                .nik(this.nik)
+                .dateOfBirth(this.dateOfBirth)
+                .createdAt(this.createdAt)
+                .updatedAt(this.updatedAt)
+                .build();
+    }
     
 }
