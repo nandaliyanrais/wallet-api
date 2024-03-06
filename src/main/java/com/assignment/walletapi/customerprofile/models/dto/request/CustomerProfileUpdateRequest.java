@@ -1,5 +1,6 @@
-package com.assignment.walletapi.customerprofile.models.dto;
+package com.assignment.walletapi.customerprofile.models.dto.request;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -16,7 +17,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CustomerProfileUpdateRequest {
 
-    private UUID id;
+    private Long id;
 
     private String name;
 

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.assignment.walletapi.customerprofile.models.CustomerProfile;
 
-public interface CustomerProfileRepository extends JpaRepository<CustomerProfile, UUID> {
-    
+public interface CustomerProfileRepository extends JpaRepository<CustomerProfile, Long> {
+
+        
 }

@@ -2,6 +2,7 @@ package com.assignment.walletapi.customeruser.models.dto;
 
 import java.util.UUID;
 
+import com.assignment.walletapi.applicationuser.ApplicationUser;
 import com.assignment.walletapi.customeruser.models.CustomerUser;
 
 import jakarta.validation.constraints.NotBlank;
@@ -17,7 +18,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CustomerUserRequest {
 
-    private UUID id;
+    private Long id;
+
+    private UUID userId;
 
     @NotBlank(message = "Name cannot be empty")
     private String name;
@@ -31,12 +34,24 @@ public class CustomerUserRequest {
     private String email;
 
     public CustomerUser convertToEntity() {
-        return CustomerUser.builder()
+        CustomerUser customerUser = CustomerUser.builder()
                 .id(this.id)
+                // .userId(this.userId)
                 .name(this.name)
                 .username(this.username)
                 .email(this.email)
                 .build();
+        ApplicationUser applicationUser = ApplicationUser.builder()
+                .name(name)
+                .username(username)
+                .email(email)
+                .password(password)
+                .build();
+        
+        customerUser.setApplicationUser(applicationUser);
+        applicationUser.setCustomerUser(customerUser);
+
+        return customerUser;
     }
     
 }

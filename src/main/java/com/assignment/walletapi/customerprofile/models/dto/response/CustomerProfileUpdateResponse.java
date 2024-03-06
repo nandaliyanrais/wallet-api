@@ -1,8 +1,7 @@
-package com.assignment.walletapi.customerprofile.models.dto;
+package com.assignment.walletapi.customerprofile.models.dto.response;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,13 +14,12 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerProfileResponse {
-
-    private UUID id;
+public class CustomerProfileUpdateResponse {
+    
+    private Long id;
     private String name;
     private Integer nik;
     private LocalDate dateOfBirth;
-    private Timestamp createdAt;
     private Timestamp updatedAt;
-    
+
 }
